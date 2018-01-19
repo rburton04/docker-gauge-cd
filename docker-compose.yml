@@ -1,12 +1,8 @@
-sut:
-    build: ./gauge
-    container_name: web-sut
-    links:
-        - web
-    environment:
-        - BASE_URL=http://web:8080
+version: "2"
 
-web:
-  build: .
-  ports:
-    - "8080:8080"
+services:
+  bolt1201:
+    image: bolt1201_bolt:latest
+    volumes:
+      - /home/swat/copy:/usr/src/app/functional
+    entrypoint: mvn gauge:execute -DspecsDir=specs/JMeterTest.spec
